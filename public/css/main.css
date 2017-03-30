@@ -1,0 +1,7 @@
+.foot-nav {
+  display: none;
+}
+
+.active {
+  display: inline-block;
+}
