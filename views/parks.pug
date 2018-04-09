@@ -1,0 +1,12 @@
+h1 This is Parks
+
+
+//- each park, index in parks
+//-   h2= park.state
+each park in parks
+  if park.parks.length
+    h2= park.state
+    each parkName in park.parks
+      h4= parkName.name
+  //- each parkName in park.parks
+  //-   h4= parkName.name

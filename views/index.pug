@@ -1,13 +1,34 @@
 doctype html
 html
   head
+    meta(charset="utf-8")
     title pug demo
     include stylesheets.pug
   body
-    h1 Happy as a Pug in a Rug
-    h2= url
+    a(class="btn btn-large" href="#")
+    .dropdown
+      .btn.dropdown-toggle.btn-danger( id="dLabel" role="button" data-toggle="dropdown" href="#")
+        |  Dropdown stuff up in here
+        .caret.dropdown-caret
+      ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+        li
+          a(tabindex="-1" href="#") Action
+        li
+          a(tabindex="-1" href="#") Another action
+        li
+          a(tabindex="-1" href="#") Something else here
+
+    .btn-group
+      button.btn Left
+      button.btn Middle
+      button.btn Right
+
+    //- info, danger, etc come from Bootstrap
+    h1.text-warning Happy as a Pug in a Rug
+    //- h2= url
     //- or
-    //- h2 #{subtitle}
+    h2 #{subtitle}
+    h2 #{settings.wow}
 
     //- makes a div without declaring it
     .names
@@ -15,32 +36,30 @@ html
         each name in names
           li Hello, #{name}
 
-    - let wtf = "username"
-
-    input(type='text' placeholder=wtf)
-
     block content
       p This is here by default
 
-    .footer-nav
+    //- Stick some JS into your template
+    - let jsAnywhere = "list your fave movies"
+
+    form.user-form(method="POST" action="/")
+      input(type='text' name="title" placeholder=jsAnywhere)
+
       //- condition class using object mapping
-      a.foot-nav(class={active: loggedIn === true} href='/') Logout
-      a.foot-nav(class={active: loggedIn === false} href='/') Login/Register
+      //-Logout doesn't do anything. Just for demo purposes
+      button#delete-mov.is-hidden(class={active: movies}) Remove movie
+      button(type="submit") Add movie
 
-      //- or...
-      //- if loggedIn
-      //-   a.foot-nav(class=active href='/') Logout
-      //- else
-      //-   a.foot-nav(class=active href='/') Login/Register
-
-
-
-
+    .is-hidden(class={active: movies})
+      h4 Your fave movies
+      ul
+        if movies
+          each movie in movies
+            li #{movie.title}
 
 
-
-
-
-
-
-
+    script(src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous")
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/client/front-end.js')

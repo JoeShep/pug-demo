@@ -1,7 +1,12 @@
-.foot-nav {
+.is-hidden {
   display: none;
 }
 
 .active {
   display: inline-block;
+  cursor: pointer;
+}
+
+.btn .dropdown-caret {
+  margin-left: 10px;
 }
